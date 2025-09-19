@@ -1,0 +1,44 @@
+/* Reset default browser styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Georgia, serif;
+  background: #111;
+  color: #eee;
+  line-height: 1.6;
+}
+
+header {
+  text-align: center;
+  padding: 4rem 1rem;
+  background: linear-gradient(to right, #000, #222);
+}
+
+h1 {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+}
+
+h2 {
+  margin-top: 2rem;
+  border-bottom: 2px solid #eee;
+  display: inline-block;
+  padding-bottom: 0.3rem;
+}
+
+main {
+  max-width: 800px;
+  margin: auto;
+  padding: 2rem;
+}
+
+footer {
+  text-align: center;
+  padding: 2rem;
+  font-size: 0.9rem;
+  color: #777;
+}
