@@ -3,38 +3,42 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Zarles' Archive</title>
+  <title>S’s Archive</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <h1>The Archive</h1>
-    <p>A declaration of my works and beliefs</p>
-  </header>
+  <!-- Background Image -->
+  <div class="background"></div>
 
-  <main>
-    <section>
-      <h2>Introduction</h2>
-      <p>A little peek into my creative world.</p>
-    </section>
+  <!-- Overlay for darkness effect -->
+  <div class="overlay"></div>
 
-    <section>
-      <h2>My Works</h2>
-      <ul>
-        <li>Project 1 – something I built</li>
-        <li>Project 2 – something I wrote</li>
-        <li>Project 3 – something I discovered</li>
-      </ul>
-    </section>
-
-    <section>
-      <h2>Beliefs</h2>
-      <p>What I believe about the future, my principles, and my vision.</p>
-    </section>
+  <!-- Content -->
+  <main class="landing">
+    <h1 class="title">The Archive</h1>
+    <p class="one-liner">Who am I? An overflow disguised as silence. I carry futures in my soul, and they refuse to sleep; at times, so much that I tend to neglect the present.</p>
   </main>
 
-  <footer>
-    <p>© 2025 ZSA</p>
-  </footer>
+  <!-- Music -->
+  <audio id="bg-music" autoplay>
+    <source src="music.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <script>
+    // Fade music out after 45 seconds
+    const audio = document.getElementById("bg-music");
+    audio.volume = 1.0;
+    setTimeout(() => {
+      const fade = setInterval(() => {
+        if (audio.volume > 0.05) {
+          audio.volume -= 0.05;
+        } else {
+          audio.pause();
+          clearInterval(fade);
+        }
+      }, 300);
+    }, 45000); // 45 seconds
+  </script>
 </body>
 </html>

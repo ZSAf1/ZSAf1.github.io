@@ -5,40 +5,55 @@
   box-sizing: border-box;
 }
 
-body {
-  font-family: Georgia, serif;
-  background: #111;
-  color: #eee;
-  line-height: 1.6;
+/* Background image full screen */
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("artpiece.jpg") no-repeat center center/cover;
+  z-index: -2;
 }
 
-header {
+/* Dark overlay for dramatic effect */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(20, 10, 10, 0.65);
+  z-index: -1;
+}
+
+/* Center content */
+.landing {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   text-align: center;
-  padding: 4rem 1rem;
-  background: linear-gradient(to right, #000, #222);
+  padding: 2rem;
 }
 
-h1 {
-  font-size: 3rem;
-  margin-bottom: 0.5rem;
+/* Title */
+.title {
+  font-size: 5rem;
+  color: #f4e1d2;
+  font-family: 'Georgia', serif;
+  letter-spacing: 4px;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
 }
 
-h2 {
-  margin-top: 2rem;
-  border-bottom: 2px solid #eee;
-  display: inline-block;
-  padding-bottom: 0.3rem;
-}
-
-main {
+/* One-liner in cursive style */
+.one-liner {
+  font-size: 1.8rem;
   max-width: 800px;
-  margin: auto;
-  padding: 2rem;
-}
-
-footer {
-  text-align: center;
-  padding: 2rem;
-  font-size: 0.9rem;
-  color: #777;
+  line-height: 1.6;
+  color: #fffbea;
+  font-family: "Brush Script MT", cursive;
+  font-style: italic;
 }
