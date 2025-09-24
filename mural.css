@@ -1,0 +1,91 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Background */
+.mural-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("mural-bg.jpg") no-repeat center center/cover;
+  z-index: -2;
+}
+.mural-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(15, 10, 20, 0.65);
+  z-index: -1;
+}
+
+/* Main Canvas */
+.mural {
+  min-height: 100vh;
+  padding: 3rem;
+  text-align: center;
+  color: #f0e6d2;
+}
+
+.mural-title {
+  font-family: 'Cinzel', serif;
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  text-shadow: 0 0 20px rgba(200,180,120,0.7);
+}
+
+.mural-subtitle {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.2rem;
+  margin-bottom: 3rem;
+  opacity: 0.9;
+}
+
+/* Grid of Elements */
+.mural-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  justify-items: center;
+  align-items: center;
+}
+
+.mural-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: #d4af37;
+  transition: transform 0.3s, filter 0.3s;
+}
+
+.mural-item img {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.6);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.mural-item span {
+  margin-top: 1rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+  opacity: 0.8;
+}
+
+/* Hover Effect */
+.mural-item:hover img {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px rgba(212,175,55,0.8);
+}
+.mural-item:hover span {
+  opacity: 1;
+}

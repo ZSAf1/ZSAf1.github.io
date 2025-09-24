@@ -3,56 +3,81 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portal Transition</title>
-  <link rel="stylesheet" href="styles.css">
+  <title>S’s Archive</title>
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Italianno&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- Start Overlay -->
+  <!-- Click-to-start overlay -->
   <div id="start-overlay">
-    <p>Click anywhere to enter</p>
+    <p>Click anywhere to begin</p>
   </div>
 
-  <!-- Background -->
+  <!-- Background Image -->
   <div class="background"></div>
+
+  <!-- Dark Overlay -->
   <div class="overlay"></div>
 
-  <!-- Landing Page -->
-  <section class="landing" id="landing">
-    <h1 class="title">Welcome</h1>
-    <div class="one-liner">
-      <span>Your journey begins here</span>
-    </div>
-    <a href="#main" class="enter-link">Enter</a>
-  </section>
+  <!-- Landing Content -->
+  <main class="landing">
+    <h1 class="title">The Archive</h1>
 
-  <!-- Main Page (hidden at first) -->
-  <section id="main" class="main-content">
-    <h2>You’ve entered the portal</h2>
-    <p>This is your new page inside the same tab.</p>
-  </section>
+    <!-- One-liner with each word in a span for animation -->
+    <p class="one-liner">
+      <span>Who</span> <span>am</span> <span>I?</span> <span>An</span> <span>overflow</span> <span>disguised</span> <span>as</span> <span>silence.</span><br>
+      <span>I</span> <span>carry</span> <span>futures</span> <span>in</span> <span>my</span> <span>soul,</span> <span>and</span> <span>they</span> <span>refuse</span> <span>to</span> <span>sleep;</span><br>
+      <span>at</span> <span>times,</span> <span>so</span> <span>much</span> <span>that</span> <span>I</span> <span>tend</span> <span>to</span> <span>neglect</span> <span>the</span> <span>present.</span>
+    </p>
+
+    <a href="archive.html" class="enter-link">enter</a>
+  </main>
+
+  <!-- Music -->
+  <audio id="bg-music" preload="auto">
+    <source src="music.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
 
   <script>
-    // Overlay click removes itself
-    document.getElementById("start-overlay").addEventListener("click", function() {
-      this.style.opacity = "0";
-      setTimeout(() => this.style.display = "none", 800);
+    // Audio fade after 45 seconds (starts when user allows/play)
+    const audio = document.getElementById("bg-music");
+    audio.volume = 1.0;
+
+    setTimeout(() => {
+      const fade = setInterval(() => {
+        if (audio.volume > 0.05) {
+          audio.volume = Math.max(0, audio.volume - 0.05);
+        } else {
+          audio.pause();
+          clearInterval(fade);
+        }
+      }, 300);
+    }, 45000);
+
+    // Animate one-liner word by word and reveal enter link after words finish
+    const words = document.querySelectorAll('.one-liner span');
+    const enterLink = document.querySelector('.enter-link');
+
+    words.forEach((word, idx) => {
+      word.style.animationDelay = `${idx * 0.25}s`; // 0.25s between words
     });
 
-    // Portal swirl effect on Enter
-    document.querySelector(".enter-link").addEventListener("click", function(e) {
-      e.preventDefault();
-      const landing = document.getElementById("landing");
-      const main = document.getElementById("main");
+    const totalTime = words.length * 250 + 500; // ms
+    setTimeout(() => {
+      enterLink.style.opacity = 1;
+      enterLink.style.transform = 'rotate(0deg) scale(1.05)';
+    }, totalTime);
 
-      // Add swirl animation class
-      landing.classList.add("swirl-out");
-
-      // After swirl, reveal main
-      setTimeout(() => {
-        main.classList.add("show");
-        main.scrollIntoView({ behavior: "smooth" });
-      }, 1200); // wait for animation
+    // Click-to-start overlay: required so browsers will allow play
+    const overlay = document.getElementById('start-overlay');
+    overlay.addEventListener('click', () => {
+      audio.play().catch(()=>{}); // start music (silent fail is okay)
+      overlay.style.display = 'none';
     });
   </script>
+
 </body>
 </html>
