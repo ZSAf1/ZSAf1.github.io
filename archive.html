@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Archive - Layer One</title>
+  <link rel="stylesheet" href="archive.css">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Portal Transition Overlay -->
+  <div id="portal"></div>
+
+  <!-- Background -->
+  <div class="archive-background"></div>
+  <div class="archive-overlay"></div>
+
+  <!-- Archive Content -->
+  <main class="archive-main">
+    <h1 class="archive-title">Welcome to the Archive</h1>
+    <p class="archive-subtitle">Every layer holds a story. Some are hidden, some wait to be found.</p>
+
+    <a href="#" class="continue-link">continue →</a>
+  </main>
+
+  <script>
+    // Fade-in portal effect on load
+    const portal = document.getElementById('portal');
+    window.onload = () => {
+      portal.classList.add('fade-out');
+    };
+  </script>
+</body>
+</html>

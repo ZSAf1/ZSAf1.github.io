@@ -3,82 +3,56 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>S’s Archive</title>
-  <link rel="stylesheet" href="style.css">
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Italianno&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <title>Portal Transition</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <!-- Click-to-start overlay -->
+  <!-- Start Overlay -->
   <div id="start-overlay">
-  <p>Click anywhere to begin</p>
+    <p>Click anywhere to enter</p>
   </div>
 
-  <!-- Background Image -->
+  <!-- Background -->
   <div class="background"></div>
-
-  <!-- Dark Overlay -->
   <div class="overlay"></div>
 
-  <!-- Landing Content -->
-  <main class="landing">
-    <h1 class="title">The Archive</h1>
+  <!-- Landing Page -->
+  <section class="landing" id="landing">
+    <h1 class="title">Welcome</h1>
+    <div class="one-liner">
+      <span>Your journey begins here</span>
+    </div>
+    <a href="#main" class="enter-link">Enter</a>
+  </section>
 
-    <!-- One-liner with each word in a span for animation -->
-    <p class="one-liner">
-      <span>Who</span> <span>am</span> <span>I?</span> <span>An</span> <span>overflow</span> <span>disguised</span> <span>as</span> <span>silence.</span><br>
-      <span>I</span> <span>carry</span> <span>futures</span> <span>in</span> <span>my</span> <span>soul,</span> <span>and</span> <span>they</span> <span>refuse</span> <span>to</span> <span>sleep;</span><br>
-      <span>at</span> <span>times,</span> <span>so</span> <span>much</span> <span>that</span> <span>I</span> <span>tend</span> <span>to</span> <span>neglect</span> <span>the</span> <span>present.</span>
-    </p>
-
-    <a href="archive.html" class="enter-link">enter</a>
-  </main>
-
-  <!-- Music -->
-  <audio id="bg-music" autoplay>
-    <source src="music.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
-  </audio>
+  <!-- Main Page (hidden at first) -->
+  <section id="main" class="main-content">
+    <h2>You’ve entered the portal</h2>
+    <p>This is your new page inside the same tab.</p>
+  </section>
 
   <script>
-    // Fade music out after 45 seconds
-    const audio = document.getElementById("bg-music");
-    audio.volume = 1.0;
-    setTimeout(() => {
-      const fade = setInterval(() => {
-        if (audio.volume > 0.05) {
-          audio.volume -= 0.05;
-        } else {
-          audio.pause();
-          clearInterval(fade);
-        }
-      }, 300);
-    }, 45000);
+    // Overlay click removes itself
+    document.getElementById("start-overlay").addEventListener("click", function() {
+      this.style.opacity = "0";
+      setTimeout(() => this.style.display = "none", 800);
+    });
 
-    // Animate one-liner word by word
-  const words = document.querySelectorAll('.one-liner span');
-  const enterLink = document.querySelector('.enter-link');
+    // Portal swirl effect on Enter
+    document.querySelector(".enter-link").addEventListener("click", function(e) {
+      e.preventDefault();
+      const landing = document.getElementById("landing");
+      const main = document.getElementById("main");
 
-  words.forEach((word, idx) => {
-    word.style.animationDelay = `${idx * 0.25}s`; // 0.25s between words
-  });
+      // Add swirl animation class
+      landing.classList.add("swirl-out");
 
-  // Calculate total animation time
-  const totalTime = words.length * 250 + 500; // 250ms per word + 500ms buffer
-
-  // Show enter link after all words finish
-  setTimeout(() => {
-    enterLink.style.opacity = 1;
-    enterLink.style.transform = 'rotate(0deg) scale(1.05)';
-  }, totalTime);
-  const overlay = document.getElementById('start-overlay');
-overlay.addEventListener('click', () => {
-  audio.play(); // start music
-  overlay.style.display = 'none'; // hide overlay
-});
-
+      // After swirl, reveal main
+      setTimeout(() => {
+        main.classList.add("show");
+        main.scrollIntoView({ behavior: "smooth" });
+      }, 1200); // wait for animation
+    });
   </script>
-
 </body>
 </html>
