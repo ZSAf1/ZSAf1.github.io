@@ -5,23 +5,39 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>S’s Archive</title>
   <link rel="stylesheet" href="style.css">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Italianno&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
+  <!-- Click-to-start overlay -->
+  <div id="start-overlay">
+  <p>Click anywhere to begin</p>
+  </div>
+
   <!-- Background Image -->
   <div class="background"></div>
 
-  <!-- Overlay for darkness effect -->
+  <!-- Dark Overlay -->
   <div class="overlay"></div>
 
-  <!-- Content -->
+  <!-- Landing Content -->
   <main class="landing">
     <h1 class="title">The Archive</h1>
-    <p class="one-liner">Who am I? An overflow disguised as silence. I carry futures in my soul, and they refuse to sleep; at times, so much that I tend to neglect the present.</p>
+
+    <!-- One-liner with each word in a span for animation -->
+    <p class="one-liner">
+      <span>Who</span> <span>am</span> <span>I?</span> <span>An</span> <span>overflow</span> <span>disguised</span> <span>as</span> <span>silence.</span><br>
+      <span>I</span> <span>carry</span> <span>futures</span> <span>in</span> <span>my</span> <span>soul,</span> <span>and</span> <span>they</span> <span>refuse</span> <span>to</span> <span>sleep;</span><br>
+      <span>at</span> <span>times,</span> <span>so</span> <span>much</span> <span>that</span> <span>I</span> <span>tend</span> <span>to</span> <span>neglect</span> <span>the</span> <span>present.</span>
+    </p>
+
+    <a href="archive.html" class="enter-link">enter</a>
   </main>
 
   <!-- Music -->
   <audio id="bg-music" autoplay>
-    <source src="music.mp3.mp3" type="audio/mpeg">
+    <source src="music.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
   </audio>
 
@@ -38,7 +54,31 @@
           clearInterval(fade);
         }
       }, 300);
-    }, 45000); // 45 seconds
+    }, 45000);
+
+    // Animate one-liner word by word
+  const words = document.querySelectorAll('.one-liner span');
+  const enterLink = document.querySelector('.enter-link');
+
+  words.forEach((word, idx) => {
+    word.style.animationDelay = `${idx * 0.25}s`; // 0.25s between words
+  });
+
+  // Calculate total animation time
+  const totalTime = words.length * 250 + 500; // 250ms per word + 500ms buffer
+
+  // Show enter link after all words finish
+  setTimeout(() => {
+    enterLink.style.opacity = 1;
+    enterLink.style.transform = 'rotate(0deg) scale(1.05)';
+  }, totalTime);
+  const overlay = document.getElementById('start-overlay');
+overlay.addEventListener('click', () => {
+  audio.play(); // start music
+  overlay.style.display = 'none'; // hide overlay
+});
+
   </script>
+
 </body>
 </html>
